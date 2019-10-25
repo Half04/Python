@@ -4,8 +4,7 @@ s.bind(('0.0.0.0', 2222))
 s.listen(10)
 while True:
     conn, addr = s.accept()
-    while True:
-        data = conn.recv(1024)
-        if data == "close" or not data: break
+    data = conn.recv(1024)
+    if data and data != "close":
         conn.send(data)
     conn.close()
